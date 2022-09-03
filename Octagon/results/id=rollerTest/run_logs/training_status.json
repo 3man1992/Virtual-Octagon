@@ -2,22 +2,31 @@
     "Roll": {
         "checkpoints": [
             {
-                "steps": 7856,
-                "file_path": "results\\id=rollerTest\\Roll\\Roll-7856.onnx",
+                "steps": 499979,
+                "file_path": "results\\id=rollerTest\\Roll\\Roll-499979.onnx",
                 "reward": null,
-                "creation_time": 1662204176.1577053,
+                "creation_time": 1662208813.9783914,
                 "auxillary_file_paths": [
-                    "results\\id=rollerTest\\Roll\\Roll-7856.pt"
+                    "results\\id=rollerTest\\Roll\\Roll-499979.pt"
+                ]
+            },
+            {
+                "steps": 500043,
+                "file_path": "results\\id=rollerTest\\Roll\\Roll-500043.onnx",
+                "reward": null,
+                "creation_time": 1662208814.032938,
+                "auxillary_file_paths": [
+                    "results\\id=rollerTest\\Roll\\Roll-500043.pt"
                 ]
             }
         ],
         "final_checkpoint": {
-            "steps": 7856,
+            "steps": 500043,
             "file_path": "results\\id=rollerTest\\Roll.onnx",
             "reward": null,
-            "creation_time": 1662204176.1577053,
+            "creation_time": 1662208814.032938,
             "auxillary_file_paths": [
-                "results\\id=rollerTest\\Roll\\Roll-7856.pt"
+                "results\\id=rollerTest\\Roll\\Roll-500043.pt"
             ]
         }
     },
