@@ -1,3 +1,4 @@
+
 using System.Collections.Generic;
 using UnityEngine;
 using Unity.MLAgents;
@@ -26,7 +27,6 @@ public class agent1 : Agent // The agent1 has to be the exact same name as the n
     // public Transform[] LickPorts = new Transform[2]; // Define a public, array of type Transforms of length 3
     public List<Transform> LickPorts;
     public Transform RewardingPort;
-    // public int Counter = 0;
     public int ActionCounter; // To keep track of time spent in arena and trial length
 
     public override void OnEpisodeBegin() // Called every time a new episode is started or new game
@@ -40,7 +40,7 @@ public class agent1 : Agent // The agent1 has to be the exact same name as the n
         RewardingPort = LickPorts[index];
 
         // Chnage the colour of the rewarding port
-        RewardingPort.GetComponent<Renderer>().material.color = new Color(0, 255, 0);
+        RewardingPort.GetComponent<Renderer>().material.color = new Color(0, 255, 0); // The CS
 
         // Set the agent velocity to zero at the start of the trial and place the agent in a random place within the Octagon
         this.rBody.angularVelocity = Vector3.zero;
@@ -61,7 +61,7 @@ public class agent1 : Agent // The agent1 has to be the exact same name as the n
         sensor.AddObservation(LickPort5.localPosition); // Feed the target position to the agent 3x
         sensor.AddObservation(LickPort6.localPosition); // Feed the target position to the agent 3x
         sensor.AddObservation(LickPort7.localPosition); // Feed the target position to the agent 3x 
-        sensor.AddObservation(LickPort8.localPosition); // Feed the target position to the agent 3x 
+        sensor.AddObservation(LickPort8.localPosition); // Feed the target position to the agent 3x
 
         // Where is the agent
         sensor.AddObservation(this.transform.localPosition); // Tell the agent where it is 3x 
