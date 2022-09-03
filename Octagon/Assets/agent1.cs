@@ -23,52 +23,42 @@ public class agent1 : Agent // The agent1 has to be the exact same name as the n
     public Transform LickPort7; 
     public Transform LickPort8;
 
-
-
-    public Transform[] LickPorts = new Transform [3]; // Define a public, array of type Transforms of length 3
-    // public Transform[] LickPorts = {LickPort6, LickPort7, LickPort8};
+    // public Transform[] LickPorts = new Transform[2]; // Define a public, array of type Transforms of length 3
+    public List<Transform> LickPorts;
     public Transform RewardingPort;
-    public int Counter = 0;
-    public int ActionCounter;
+    // public int Counter = 0;
+    public int ActionCounter; // To keep track of time spent in arena and trial length
 
     public override void OnEpisodeBegin() // Called every time a new episode is started or new game
     {
-        
+
+        // Set the action countet to 0, also consider this as t = 0
         ActionCounter = 0;
-        
-        if (Counter > 2)
-        {
-            Counter = 0;
-        }
-        
+
+        //Set the rewarding port
+        var index = Random.Range(0, 8); // Create a port index randomly
+        RewardingPort = LickPorts[index];
+
+        // Chnage the colour of the rewarding port
+        RewardingPort.GetComponent<Renderer>().material.color = new Color(0, 255, 0);
+
+        // Set the agent velocity to zero at the start of the trial and place the agent in a random place within the Octagon
         this.rBody.angularVelocity = Vector3.zero;
         this.rBody.velocity = Vector3.zero;
         this.transform.localPosition = new Vector3(Random.value * 8, 
                                                    15.5f, 
                                                    Random.value * -5);
-
-        LickPorts[0] = LickPort6;
-        LickPorts[1] = LickPort7;
-        LickPorts[2] = LickPort8;
-
-        // int Port = Random.Range(0, 3); # Choose a random port
-        RewardingPort = LickPorts[Counter];
-        Counter = Counter + 1;
-
-       
-
-        // Choose the rewarding port
-        // ArrayList list = new ArrayList();
-        // list.Add(LickPort7)
-
-        // Transform[] Ports = {LickPort7, LickPort6, LickPort8}
-        // // Transform RewardingPort = 
-
+        
     }
 
     public override void CollectObservations(VectorSensor sensor) // Give the agent information
     {
         // Port positions as obersvations
+        sensor.AddObservation(LickPort1.localPosition); // Feed the target position to the agent 3x
+        sensor.AddObservation(LickPort2.localPosition); // Feed the target position to the agent 3x
+        sensor.AddObservation(LickPort3.localPosition); // Feed the target position to the agent 3x
+        sensor.AddObservation(LickPort4.localPosition); // Feed the target position to the agent 3x
+        sensor.AddObservation(LickPort5.localPosition); // Feed the target position to the agent 3x
         sensor.AddObservation(LickPort6.localPosition); // Feed the target position to the agent 3x
         sensor.AddObservation(LickPort7.localPosition); // Feed the target position to the agent 3x 
         sensor.AddObservation(LickPort8.localPosition); // Feed the target position to the agent 3x 
@@ -99,12 +89,14 @@ public class agent1 : Agent // The agent1 has to be the exact same name as the n
         if (distanceToTarget < 3.42f) // if goal achieved
         {
             SetReward(1.0f);
+            RewardingPort.GetComponent<Renderer>().material.color = new Color(0, 0, 0);
             EndEpisode();
         }
 
         // Fell off platform - but maybe change to time in trial
         else if (ActionCounter > 2000)
         {
+            RewardingPort.GetComponent<Renderer>().material.color = new Color(0, 0, 0);
             EndEpisode();
         }
     }
