@@ -80,6 +80,7 @@ public class agent1 : Agent // The agent1 has to be the exact same name as the n
         Vector3 controlSignal = Vector3.zero; // Vector 3 means 3dimensions
         controlSignal.x = actionBuffers.ContinuousActions[0];
         controlSignal.z = actionBuffers.ContinuousActions[1];
+        controlSignal.y = actionBuffers.ContinuousActions[2]; // adding a rotational turn 
         rBody.AddForce(controlSignal * forceMultiplier); // push the agent with some force
 
         // Rewards
@@ -94,7 +95,7 @@ public class agent1 : Agent // The agent1 has to be the exact same name as the n
         }
 
         // Fell off platform - but maybe change to time in trial
-        else if (ActionCounter > 2000)
+        else if (ActionCounter > 3000)
         {
             RewardingPort.GetComponent<Renderer>().material.color = new Color(0, 0, 0);
             EndEpisode();
@@ -107,5 +108,6 @@ public class agent1 : Agent // The agent1 has to be the exact same name as the n
             var continuousActionsOut = actionsOut.ContinuousActions;
             continuousActionsOut[0] = Input.GetAxis("Horizontal");
             continuousActionsOut[1] = Input.GetAxis("Vertical");
+            // continuousActionsOut[2] = Input.GetAxis("Vertical");
         }    
 }
