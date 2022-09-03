@@ -1,5 +1,5 @@
 # Virtual-Octagon
-A virtual environment for the Duan Octagon behavioural assay.
+A virtual environment for the Duan Octagon behavioural assay. Agent using visual observations as sensors as well as geospatial knowledge of ports, egocentric positioning and speed.
 
 Remaining items to do:
 - Add second agent
